@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Node from './Node';
 import './AssemblyApp.css';
+import Register from './Register'
 
 
 const command_object = {
@@ -105,12 +106,23 @@ export default class AssemblyApp extends Component {
         }
         const {nodes} = this.state;
         let num = parseInt(this.props.num)
+        let one= 1;
         let x = this.numToHexNode(this.state.r_one_value);
         let y = this.numToHexNode(this.state.r_two_value);
         console.log(nodes);
         return (
             <div>
-                <input type ="text" value={this.state.r_one_string} onChange={this.changeValue(1)} />
+                <Register
+                    r = {parseInt("1")}
+                    value = {this.state.r_one_value}
+                    string = {this.state.r_one_string}
+                    nodes = {this.state.r_one_nodes}
+                    changeValue = {this.changeValue}
+                    numToHex = {this.numToHexNode} />
+            </div>
+        );
+                
+        /*        <input type ="text" value={this.state.r_one_string} onChange={this.changeValue(1)} />
         <div className= "grid">
             {this.state.r_one_nodes.map((row, rowIdx) => {
                 return <div>{
@@ -130,7 +142,7 @@ export default class AssemblyApp extends Component {
         </div>
         </div>
 
-        );
+        ); */
         
     }
 } 
