@@ -111,7 +111,7 @@ export default class AssemblyApp extends Component {
         let y = this.numToHexNode(this.state.r_two_value);
         console.log(nodes);
         return (
-            <div>
+            /*<div>
                 <Register
                     r = {parseInt("1")}
                     value = {this.state.r_one_value}
@@ -119,10 +119,10 @@ export default class AssemblyApp extends Component {
                     nodes = {this.state.r_one_nodes}
                     changeValue = {this.changeValue}
                     numToHex = {this.numToHexNode} />
-            </div>
-        );
-                
-        /*        <input type ="text" value={this.state.r_one_string} onChange={this.changeValue(1)} />
+            </div> */
+        
+        <div>   
+        <input type ="text" value={this.state.r_one_string} onChange={this.changeValue(1)} />
         <div className= "grid">
             {this.state.r_one_nodes.map((row, rowIdx) => {
                 return <div>{
@@ -142,7 +142,7 @@ export default class AssemblyApp extends Component {
         </div>
         </div>
 
-        ); */
+        ); 
         
     }
 } 
