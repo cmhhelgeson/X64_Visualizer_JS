@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Node from './Node';
 import './AssemblyApp.css';
 import Register from './Register'
 
@@ -97,6 +96,23 @@ export default class AssemblyApp extends Component {
             this.setState({message: "Mouse Up"});
         }
     }
+
+    getString = (r) => {
+        if (r === 1) {
+            return this.state.r_one_string;
+        }
+    }
+
+    getNodes = (r) => {
+        if (r === 1) {
+            return this.state.r_one_nodes;
+        } else if (r === 2) {
+            return this.state.r_two_nodes;
+        }
+        return null;
+    }
+
+    
     render() {
         if (isNaN(this.state.r_one_value)) {
             this.setState({r_one_value: 0});
@@ -105,44 +121,56 @@ export default class AssemblyApp extends Component {
             this.setState({r_two_value: 0});
         }
         const {nodes} = this.state;
-        let num = parseInt(this.props.num)
         let one= 1;
         let x = this.numToHexNode(this.state.r_one_value);
         let y = this.numToHexNode(this.state.r_two_value);
         console.log(nodes);
         return (
-            /*<div>
-                <Register
-                    r = {parseInt("1")}
-                    value = {this.state.r_one_value}
-                    string = {this.state.r_one_string}
-                    nodes = {this.state.r_one_nodes}
-                    changeValue = {this.changeValue}
-                    numToHex = {this.numToHexNode} />
-            </div> */
-        
-        <div>   
-        <input type ="text" value={this.state.r_one_string} onChange={this.changeValue(1)} />
-        <div className= "grid">
-            {this.state.r_one_nodes.map((row, rowIdx) => {
-                return <div>{
-                    row.map((node, nodeIdx) => <Node hex={x[nodeIdx]}></Node>)          
-                }
-                </div>
-            })}
-        </div>
-        <input type ="text" value={this.state.r_two_string} onChange={this.changeValue(2)} />
-        <div className= "grid">
-        {this.state.r_two_nodes.map((row, rowIdx) => {
-            return <div>{
-                row.map((node, nodeIdx) => <Node hex={y[nodeIdx]}></Node>)          
-            }
-            </div>
-        })}
-        </div>
-        </div>
+        <div>
+            <Register
+                onChange = {this.changeValue.bind(this)}
+                getString = {this.state.getString}
+                r = {one}
+                getNodes = {this.getNodes.bind(this)}
+                byte_arr = {x}
+            />
+            <Register 
+                onChange = {this.changeValue.bind(this)}
+                getString = {this.state.getString}
+                r = {2}
+                getNodes = {this.getNodes.bind(this)}
+                byte_arr = {y}
+            />
+
+        </div>   
+    
+            
 
         ); 
         
     }
 } 
+
+
+
+
+/*export <input type ="text" value={this.state.r_one_string} onChange={this.changeValue(1)} />
+            <div className= "grid">
+                {this.state.r_one_nodes.map((row, rowIdx) => {
+                    return <div>{
+                        row.map((node, nodeIdx) => <Node hex={x[nodeIdx]}></Node>)          
+                    }
+                    </div>
+                })}
+            </div>
+            <input type ="text" value={this.state.r_two_string} onChange={this.changeValue(2)} />
+            <div className= "grid">
+                {this.state.r_two_nodes.map((row, rowIdx) => {
+                    return <div>{
+                        row.map((node, nodeIdx) => <Node hex={y[nodeIdx]}></Node>)          
+                    }
+                    </div>
+                })}
+            </div>
+            </div>
+        </div> */

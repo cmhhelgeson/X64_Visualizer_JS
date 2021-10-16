@@ -1,7 +1,45 @@
-import React, {Component} from 'react'
+import React from 'react'
 import Node from './Node'
 
-export default class Register extends Component {
+
+
+const Register = ({onChange, string, r, getNodes, byte_arr}) => {
+
+
+  const nodes = getNodes(r);
+  return (
+    <div>
+        <input 
+          type ="text" 
+          maxLength = "15"
+          value={string}
+          onChange={onChange(r)} 
+        />
+        <div className= "grid">
+          {nodes.map((row, rowIdx) => {
+            return <div> {
+              row.map((node, nodeIdx) => <Node hex={byte_arr[nodeIdx]}></Node>)          
+            }
+            </div>
+          })}
+        </div>
+      </div>
+
+  );
+
+
+}
+
+
+export default Register;
+
+
+
+
+
+
+
+  /*
   constructor(props) {
     super(props);
     this.state = {
@@ -34,4 +72,4 @@ export default class Register extends Component {
       </div>
     );
   }
-}
+} */
