@@ -3,10 +3,11 @@ import Node from './Node'
 
 
 
-const Register = ({onChange, string, r, getNodes, byte_arr}) => {
+const Register = ({input, getNodes, byte_arr, onChange = null, string = null, r = null}) => {
 
 
   const nodes = getNodes(r);
+  if (input) {
   return (
     <div>
         <input 
@@ -23,9 +24,23 @@ const Register = ({onChange, string, r, getNodes, byte_arr}) => {
             </div>
           })}
         </div>
+        
+        
       </div>
 
   );
+  } else {
+    return (
+      <div className= "grid">
+          {nodes.map((row, rowIdx) => {
+            return <div> {
+              row.map((node, nodeIdx) => <Node hex={byte_arr[nodeIdx]}></Node>)          
+            }
+            </div>
+          })}
+        </div>
+    );
+  }
 
 
 }

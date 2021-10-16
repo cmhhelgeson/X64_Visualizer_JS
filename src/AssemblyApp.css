@@ -18,3 +18,13 @@
     transform: translate(0px, 20%);
   }
 }
+
+input {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.grid {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './AssemblyApp.css';
 import Register from './Register'
+import NavBar from './NavBar'
 
 
 const command_object = {
@@ -30,9 +31,8 @@ export default class AssemblyApp extends Component {
             nodes: [],
             r_one_nodes : [],
             r_two_nodes : [],
+            result_value: 17,
             result_nodes : [],
-            message: "Hello",
-            command: "ADD",
             register_size: 8
         };
     }
@@ -77,6 +77,13 @@ export default class AssemblyApp extends Component {
         return byte_arr;
     }
 
+    changeResult = () => {
+        this.setState({result_value: 
+            (this.state.r_one_value + 
+                this.state.r_two_value)});
+
+    }
+
     changeValue = (r) => (event) => {
         let new_value = parseInt(event.target.value);
         if (r === 1) {
@@ -86,7 +93,9 @@ export default class AssemblyApp extends Component {
             this.setState({r_two_string: event.target.value});
             this.setState({r_two_value: new_value});
         }
-    
+
+        this.changeResult();
+
     }
 
     handleEvent = (event) => {
@@ -108,6 +117,8 @@ export default class AssemblyApp extends Component {
             return this.state.r_one_nodes;
         } else if (r === 2) {
             return this.state.r_two_nodes;
+        } else {
+            return this.state.result_nodes;
         }
         return null;
     }
@@ -124,10 +135,12 @@ export default class AssemblyApp extends Component {
         let one= 1;
         let x = this.numToHexNode(this.state.r_one_value);
         let y = this.numToHexNode(this.state.r_two_value);
+        let r_x = this.numToHexNode(this.state.result_value);
         console.log(nodes);
         return (
         <div>
             <Register
+                input = {true}
                 onChange = {this.changeValue.bind(this)}
                 getString = {this.state.getString}
                 r = {one}
@@ -135,11 +148,18 @@ export default class AssemblyApp extends Component {
                 byte_arr = {x}
             />
             <Register 
+                input = {true}
                 onChange = {this.changeValue.bind(this)}
                 getString = {this.state.getString}
                 r = {2}
                 getNodes = {this.getNodes.bind(this)}
                 byte_arr = {y}
+            />
+            <Register
+                input = {false}
+                r = {3}
+                getNodes = {this.getNodes.bind(this)}
+                byte_arr = {r_x}
             />
 
         </div>   
