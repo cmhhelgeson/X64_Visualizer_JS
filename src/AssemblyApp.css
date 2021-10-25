@@ -20,8 +20,12 @@
 }
 
 input {
-  margin-top: 10px;
-  margin-bottom: 0px;
+  animation-name: initAnimation;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .grid {

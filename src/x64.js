@@ -1,10 +1,29 @@
 
+export const ADD = (s, d) => {
+  return s + d;
+}
 
-export function ADD(s, d) {
+export const AND = (s, d) => {
+  return s & d;
+}
+
+export const OR = (s, d) => {
+  return s | d;
+}
+
+export const IMUL = (s, d) => {
+  return s * d;
+}
+
+
+
+
+/*
+function ADD(s, d) {
   return d + s; 
 }
 
-export function OR(s, d) {
+export default function OR(s, d) {
   return d | s;
 }
 
@@ -68,5 +87,5 @@ export function MPSADBW(xmm0, xmm1, imm_byte) {
 
 
 
-}
+} */
 

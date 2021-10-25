@@ -7,15 +7,20 @@ const Register = ({input, getNodes, byte_arr, onChange = null, string = null, r 
 
 
   const nodes = getNodes(r);
+  const isInputField = input;
   if (input) {
-  return (
-    <div>
+    return (
+      <div> {
+        isInputField ? (
         <input 
           type ="text" 
           maxLength = "15"
           value={string}
           onChange={onChange(r)} 
         />
+        ) : (
+        <br></br>
+        )}
         <div className= "grid">
           {nodes.map((row, rowIdx) => {
             return <div> {
@@ -28,10 +33,11 @@ const Register = ({input, getNodes, byte_arr, onChange = null, string = null, r 
         
       </div>
 
-  );
+    );
   } else {
     return (
-      <div className= "grid">
+      <div>
+        <div className= "grid">
           {nodes.map((row, rowIdx) => {
             return <div> {
               row.map((node, nodeIdx) => <Node hex={byte_arr[nodeIdx]}></Node>)          
@@ -39,6 +45,7 @@ const Register = ({input, getNodes, byte_arr, onChange = null, string = null, r 
             </div>
           })}
         </div>
+      </div>
     );
   }
 
